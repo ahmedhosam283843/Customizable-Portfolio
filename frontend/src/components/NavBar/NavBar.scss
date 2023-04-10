@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+@import "../../constants/Variables";
+.app_navbar {
+    height: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px); //blur the area behind
+    -webkit-backdrop-filter: blur(4px); //for safari browsers
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: fixed; //always stay visible on screen
+    padding: 1rem 2rem;
+    z-index: 2;
+
+    @media screen and (min-width: 2000px) {
+        height: 40px;
+      }
+}
+
+
+.app_navbar_name {
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+
+    p {
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: $blackColor;
+        text-transform: capitalize;
+        font-family: 'Bungee Shade', cursive;
+        span {
+            color: rgb(37, 117, 178);
+        }
+
+        @media screen and (max-width: 440px) {
+            font-size: 1rem;
+        }
+
+        @media screen and (min-width: 2000px) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.app_navbar_links {
+    justify-content: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    list-style: none;
+  
+    li {
+      margin: 0 1rem;
+      cursor: pointer;
+  
+      flex-direction: column;
+  
+      div {
+        width: 5px;
+        height: 5px;
+        background: transparent;
+        border-radius: 50%;
+  
+        margin-bottom: 5px;
+      }
+  
+      a {
+        color: $grayColor;
+        text-decoration: none;
+        flex-direction: column;
+  
+        text-transform: uppercase;
+        font-weight: 500;
+  
+        transition: all 0.3s ease-in-out;
+  
+        &:hover {
+          color: $secondaryColor;
+        }
+      }
+  
+      &:hover {
+        div {
+          background: $secondaryColor;
+        }
+      }
+    }
+  
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  }
