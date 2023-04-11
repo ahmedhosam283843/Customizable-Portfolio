@@ -2,7 +2,7 @@
 @import "../../constants/Variables";
 
 .app_navbar {
-    height: 20px;
+    height: 50px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -49,11 +49,14 @@
 }
 
 .app_navbar_links {
+    
+    margin-right: 5rem;
     justify-content: center;
     flex: 1;
     display: flex;
     align-items: center;
     list-style: none;
+    
 
     li {
         margin: 0 1rem;

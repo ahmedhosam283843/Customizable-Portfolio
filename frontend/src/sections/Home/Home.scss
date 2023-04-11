@@ -1,0 +1,118 @@
+@import '../../constants/_Variables.scss';
+
+
+.app_home {
+    flex: 1;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+
+    padding: 6.5rem 2.5rem 0rem;
+
+    @media screen and (min-width: 2000px) {
+        padding-top: 8.5rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 450px) {
+        padding: 6.5rem 1rem 2.5rem;
+        flex-direction: column;
+    }
+}
+
+
+.app_home_info {
+    flex: 0.65;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    margin: 0rem 2.5rem;
+
+
+    @media screen and (max-width: 1200px) {
+        width: 100%;
+        margin-right: 0rem;
+    }
+}
+
+.app_home_badge {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    .tag_cmp,
+    .badge_cmp {
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem 2.5rem;
+        background: $whiteColor;
+        border-radius: 20px;
+        width: auto;
+        flex-direction: row;
+
+    }
+
+    .tag_cmp {
+        margin-top: 3.5rem;
+        flex-direction: column;
+
+        p {
+            width: 100%;
+            text-transform: uppercase;
+            text-align: right;
+        }
+    }
+
+    span {
+        font-size: 2.5rem;
+        @media screen and (min-width: 2000px) {
+            font-size: 5rem;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
+.app_home_img {
+    flex: 1;
+    height: 100%;
+  
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+  
+    .user_image {
+      width: 100%;
+      object-fit: contain;
+      z-index: 1;
+
+ 
+    }
+  
+    .overlay_circle {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      object-fit: contain;
+      width: 100%;
+      height: 90%;
+    }
+  
+    @media screen and (max-width: 1200px) {
+      margin: 2rem 0;
+    }
+  }
+
+  
