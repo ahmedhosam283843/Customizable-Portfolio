@@ -2,6 +2,15 @@
 
 Customizable Portfolio is a responsive, customizable portfolio website template that you can use to showcase your work and projects. The template is built with HTML, CSS, and JavaScript.
 
+## Technologies Used
+This project uses the following technologies:
+
+- HTML
+- Sass
+- Reactjs
+- Bootstrap
+
+
 ## Installation
 
 To run this application locally, you'll need to have Node.js and npm (or yarn) installed on your machine.
@@ -26,15 +35,11 @@ To run this application locally, you'll need to have Node.js and npm (or yarn) i
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-## Technologies Used
-The Customizable Portfolio template uses the following technologies:
-
-- HTML
-- Sass
-- Reactjs
-- Bootstrap
 
 
 ## License
 
 The Customizable Portfolio template is licensed under the [MIT License](https://github.com/ahmedhosam283843/Customizable-Portfolio/blob/main/LICENSE). You are free to use, modify, and distribute the template for personal or commercial purposes. Attribution is not required but appreciated.
+
+## Contributing
+Contributions are welcome! Please feel free to open an issue or submit a pull request.
