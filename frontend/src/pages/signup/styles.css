@@ -1,0 +1,24 @@
+.register {
+  height: 100vh;
+  padding: 15% 30%;
+  background-image: url("../../assets/bgIMG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.register-btn {
+  font-weight: 700;
+  width: 100%;
+  transition: 0.8s;
+  color: #0275d8;
+  background-color: white;
+}
+.register-btn:hover {
+  background-color: #0275d8;
+  transition: 0.8s;
+  color: white;
+}
+
+/* input {
+  height: 50px;
+} */
