@@ -6,13 +6,19 @@ import javascript from '../assets/javascript.png';
 import react from '../assets/react.png';
 import cpp from '../assets/cpp.png';
 import git from '../assets/git.png';
+import gymtopia from '../assets/gymtopia.png';
+import gazara from '../assets/gazara.png';
 
 function getImage(name) {
   switch (name) {
+    case 'gazara':
+      return gazara;
     case 'git':
       return git;
     case 'profile':
       return profile;
+    case 'gymtopia':
+      return gymtopia;
     case 'circle':
       return circle;
     case 'flutter':
@@ -37,6 +43,8 @@ export default {
   python,
   react,
   cpp,
+  gazara,
+  gymtopia,
   git,
   javascript,
   getImage,
