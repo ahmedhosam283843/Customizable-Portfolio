@@ -1,0 +1,17 @@
+.login {
+  height: 100vh;
+  padding-top: 20%;
+  background-image: url("../../assets/bgIMG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.login-remeber-me {
+  margin-right: 5px;
+}
+
+.login-btn {
+  font-weight: 700;
+  width: 100%;
+  transition: 0.5s;
+}
