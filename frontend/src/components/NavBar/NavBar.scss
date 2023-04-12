@@ -1,66 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 @import "../../constants/Variables";
 
-.app_navbar {
-    height: 50px;
+.app__navbar {
     width: 100%;
-    align-items: center;
-    justify-content: space-between;
+
     display: flex;
-
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(4px); //blur the area behind
-    -webkit-backdrop-filter: blur(4px); //for safari browsers
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: fixed; //always stay visible on screen
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: fixed;
     z-index: 2;
-
-    @media screen and (min-width: 2000px) {
-        height: 40px;
-    }
 }
-
 
 .app_navbar_name {
     justify-content: flex-start;
-    align-items: center;
+    align-items: baseline;
     display: flex;
-
+    vertical-align: top;
     p {
-        font-weight: 800;
-        font-size: 1.5rem;
+        height: 15px;
+        font-weight: bold;
+        font-size: 1.7rem;
+        line-height: 15px;
         color: $blackColor;
         text-transform: capitalize;
         font-family: 'Bungee Shade', cursive;
+        margin-bottom: 0;
+        margin-top: 0;
+
 
         span {
-            color: rgb(37, 117, 178);
+            color: rgb(44, 121, 179);
         }
 
-        @media screen and (max-width: 440px) {
-            font-size: 1rem;
+        @media screen and (max-width: 450px) {
+            font-size: 1.4rem;
         }
 
         @media screen and (min-width: 2000px) {
             font-size: 2rem;
+            height: 30px;
         }
     }
 }
 
-.app_navbar_links {
-    
-    margin-right: 5rem;
-    justify-content: center;
+.app__navbar-links {
     flex: 1;
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin-right: 40px;
     list-style: none;
-    
 
     li {
         margin: 0 1rem;
         cursor: pointer;
+
         flex-direction: column;
 
         div {
@@ -73,7 +72,7 @@
         }
 
         a {
-            color: $grayColor;
+            color: var(--gray-color);
             text-decoration: none;
             flex-direction: column;
 
@@ -83,13 +82,13 @@
             transition: all 0.3s ease-in-out;
 
             &:hover {
-                color: $secondaryColor;
+                color: var(--secondary-color);
             }
         }
 
         &:hover {
             div {
-                background: $secondaryColor;
+                background: var(--secondary-color);
             }
         }
     }
@@ -99,51 +98,53 @@
     }
 }
 
-.app_navbar_menu {
-    position: relative;
+.app__navbar-menu {
+    width: 35px;
     height: 35px;
     border-radius: 50%;
-    width: 35px;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+
     display: flex;
-    background-color: $secondaryColor;
-    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
 
 
     svg {
-        //menu icon
-        width: 75%;
+        width: 70%;
         height: 70%;
-        color: $whiteColor;
+        color: var(--white-color);
     }
 
     div {
-        //menu side panel
         position: fixed;
-        z-index: 4;
         top: 0;
         bottom: 0;
         right: 0;
-        padding: 1.1rem;
-        width: 70%;
+        z-index: 5;
+
+        padding: 1rem;
+
+        width: 80%;
+        height: 100vh;
+
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
         flex-direction: column;
-        height: 100vh;
-        box-shadow: 0px 0px 20px rgba(146, 143, 143, 0.115);
-        background-color: $whiteColor;
-        background-size: cover;
+
         background: url('../../assets/bgWhite.png');
+        background-color: var(--white-color);
+        background-size: cover;
         background-repeat: repeat;
 
+        /* top box shadow */
+        box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
 
         svg {
-            //close icon
             width: 35px;
             height: 35px;
-            color: $secondaryColor;
+            color: var(--secondary-color);
             margin: 0.5rem 1rem;
         }
 
@@ -163,19 +164,21 @@
                 margin: 1rem;
 
                 a {
-                    transition: all 0.25s ease-in-out;
-                    color: $grayColor;
-                    font-size: 1rem;
+                    color: var(--gray-color);
                     text-decoration: none;
+                    font-size: 1rem;
                     text-transform: uppercase;
-                    font-weight: 550;
+                    font-weight: 500;
+
+                    transition: all 0.3s ease-in-out;
 
                     &:hover {
-                        color: $secondaryColor;
+                        color: var(--secondary-color);
                     }
                 }
             }
         }
+
         @media screen and (min-width: 900px) {
             display: none;
         }
