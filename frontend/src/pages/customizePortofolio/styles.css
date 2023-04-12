@@ -1,0 +1,42 @@
+.customize {
+  height: 100vh;
+  padding: 5% 25%;
+  background-image: url("../../assets/bgIMG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.customize-header {
+  font-weight: 700;
+  font-size: 3.5em;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+#customize-colored {
+  color: #323db0;
+}
+.custom-input {
+  height: 2.9em;
+}
+
+.customize-btn {
+  margin-top: 10%;
+  font-weight: 700;
+  width: 50%;
+  height: 2.9em;
+  transition: 0.8s;
+  color: #0275d8;
+  background-color: white;
+}
+.customize-btn:hover {
+  background-color: #0275d8;
+  transition: 0.8s;
+  color: white;
+}
+#customize-note {
+  padding-left: 1%;
+  color: #667080;
+  margin: 0;
+}
