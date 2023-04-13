@@ -11,6 +11,9 @@ This project uses the following technologies:
 - Bootstrap
 
 
+## Note 
+All the data in this phase is fixed dummy data, the customizability functionality will be implemented in the next phases. 
+
 ## Installation
 
 To run this application locally, you'll need to have Node.js and npm (or yarn) installed on your machine.
