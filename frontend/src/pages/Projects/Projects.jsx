@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
-
+import { FaPlus} from "react-icons/fa";
 import "./Projects.scss";
 import { images } from "../../constants";
 
@@ -52,7 +52,9 @@ const Projects = () => {
     <div className="app-projects">
       <h2 className="header-text">
         My Creative <span>Portfolio</span> Section
+      <FaPlus onClick={() => alert("Hello")} />
       </h2>
+
 
       <div className="app-projects-filter">
         {["UI/UX", "Web App", "Mobile App", "React JS", "All"].map(
