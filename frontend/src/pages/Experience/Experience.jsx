@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Experience.scss";
 import { images } from "../../constants";
+import { FaPlus} from "react-icons/fa";
+
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
@@ -67,7 +69,10 @@ const Experience = () => {
 
   return (
     <div className="experience">
-      <h2 className="header-text">Skills & Experiences</h2>
+      <h2 className="header-text">
+        Skills & Experiences
+        <FaPlus onClick={() => alert("Hello")} />
+      </h2>
 
       <div className="app-skills-container">
         <motion.div className="app-skills-list">

@@ -4,6 +4,19 @@
   padding: 6rem 2rem 0rem;
   height: 100vh;
   background-color: #ffffff;
+  svg {
+    
+    width: 32px;
+    height: 32px;
+    color: $blackColor;
+    margin-left: 1.3rem;
+    margin-bottom: 0.3rem;
+
+    @media screen and (max-width: 450px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
 
 .app-skills-container {
