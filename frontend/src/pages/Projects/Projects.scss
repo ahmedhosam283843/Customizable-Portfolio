@@ -124,7 +124,7 @@
     cursor: pointer;
     width: 50px;
     height: 50px;
-    border-radius: 60%;
+    border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.5);
     color: $whiteColor;
     margin: 1rem;
@@ -136,6 +136,8 @@
       color: $whiteColor;
       width: 50%;
       height: 50%;
+      margin: 0;
+
     }
   }
 }
