@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import "./Experience.scss";
 import { images } from "../../constants";
 import { FaPlus} from "react-icons/fa";
-
+import Popup from "../../components/Popup/Popup";
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [openPopup, setOpenPopup] = useState(false);
+
 
   const experienceData = [
     {
@@ -71,7 +73,7 @@ const Experience = () => {
     <div className="experience">
       <h2 className="header-text">
         Skills & Experiences
-        <FaPlus onClick={() => alert("Hello")} />
+        <FaPlus onClick={() => setOpenPopup(true)} />
       </h2>
 
       <div className="app-skills-container">
@@ -120,6 +122,8 @@ const Experience = () => {
           ))}
         </div>
       </div>
+      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}>
+      </Popup>
     </div>
   );
 };

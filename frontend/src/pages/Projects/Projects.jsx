@@ -4,12 +4,15 @@ import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { FaPlus} from "react-icons/fa";
 import "./Projects.scss";
 import { images } from "../../constants";
+import Popup from "../../components/Popup/Popup";
+
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [filterProject, setFilterProject] = useState([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
+  const [openPopup, setOpenPopup] = useState(false);
   const data = [
     {
       codeLink: "https://github.com",
@@ -52,7 +55,7 @@ const Projects = () => {
     <div className="app-projects">
       <h2 className="header-text">
         My Creative <span>Portfolio</span> Section
-      <FaPlus onClick={() => alert("Hello")} />
+        <FaPlus onClick={() => setOpenPopup(true)} />
       </h2>
 
 
@@ -127,6 +130,8 @@ const Projects = () => {
           </div>
         ))}
       </motion.div>
+      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}>
+      </Popup>
     </div>
   );
 };
