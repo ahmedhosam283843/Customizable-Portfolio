@@ -1,9 +1,11 @@
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import SkillComboBox from "../../components/comboBox/SkillComboBox";
+import SkillComboBox from "../comboBox/SkillComboBox";
+import "./AddProjectDialog.scss";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
-export default function CustomizePortofolio() {
+
+const AddProjectDialog = () => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const navigate = useNavigate();
@@ -12,48 +14,35 @@ export default function CustomizePortofolio() {
     setData(data);
   };
   console.log(data);
-
   return (
-    <div className="customize">
-      <h1 className="customize-header">
-        Customize My <span id="customize-colored">Portofolio</span>
-      </h1>
+    <div className="project-dialog">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <div className="row mb-4">
             <div className="col-lg-8 col-md-12 col-sm-12">
               <input
-                id="job-title"
+                id="project-title"
                 className="form-control custom-input"
                 type="text"
-                placeholder="Current Job Title"
-                {...register("job-title", { required: true })}
+                placeholder="Project Title"
+                {...register("project-title", { required: true })}
               />
             </div>
           </div>
-          <div className="row mb-3">
+          <div className="row mb-4">
             <div className="col-lg-12 col-md-12 col-sm-12">
               <input
                 id="img-url"
                 className="form-control custom-input"
                 type="text"
-                placeholder="User Image URL"
+                placeholder="Project Image URL"
                 {...register("img-url", { required: true })}
               />
-              <p id="customize-note">
-                Note: Image must be without background and in png format
-              </p>
             </div>
           </div>
-          <div className="row mt-4">
-            <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
               <SkillComboBox number={"1"} />
-            </div>
-            <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={"2"} />
-            </div>
-            <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={"3"} />
             </div>
           </div>
           <div className="d-flex justify-content-center">
@@ -65,4 +54,6 @@ export default function CustomizePortofolio() {
       </form>
     </div>
   );
-}
+};
+
+export default AddProjectDialog;

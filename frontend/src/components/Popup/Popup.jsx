@@ -6,10 +6,10 @@ export default function Popup(props) {
   return (
     <Dialog open={openPopup}>
       <DialogTitle>
-        <div>title goes here.</div>
+        <div>Add New Project</div>
       </DialogTitle>
-      <DialogContent>
-        <div>Content goes here.</div>
+      <DialogContent dividers>
+        {children}
       </DialogContent>
     </Dialog>
   );

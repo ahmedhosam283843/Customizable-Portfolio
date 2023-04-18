@@ -5,7 +5,8 @@ import { FaPlus} from "react-icons/fa";
 import "./Projects.scss";
 import { images } from "../../constants";
 import Popup from "../../components/Popup/Popup";
-
+import AddProjectDialog from "../../components/dialogs/AddProjectDialog";
+ 
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -131,6 +132,7 @@ const Projects = () => {
         ))}
       </motion.div>
       <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}>
+        <AddProjectDialog/>
       </Popup>
     </div>
   );

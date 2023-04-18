@@ -1,4 +1,5 @@
-export default function ComboBox(number) {
+export default function SkillComboBox(number) {
+ 
   return (
     <div class="form-floating">
       <select
