@@ -14,7 +14,7 @@ export default function ProjectTagComboBox(number) {
           <option value="machine_learning">Machine Learning</option>
         </select>
         <label htmlFor="floatingSelectGrid">
-          {"Project Tag " + number.number}{" "}
+          {"Project Tag"}{" "}
         </label>
       </div>
     );

@@ -1,16 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import SkillComboBox from "../comboBox/SkillComboBox";
+import ProjectTagComboBox from "../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
 import { useNavigate } from "react-router-dom";
 
 const AddProjectDialog = () => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
-  const navigate = useNavigate();
   const onSubmit = (data) => {
-    navigate("/home");
     setData(data);
   };
   console.log(data);
@@ -31,6 +29,17 @@ const AddProjectDialog = () => {
           </div>
           <div className="row mb-4">
             <div className="col-lg-12 col-md-12 col-sm-12">
+              <textarea
+                id="project-description"
+                className="form-control custom-input"
+                placeholder="Project Description"
+                {...register("project-description", { required: true })}
+              />
+            </div>
+          </div>
+
+          <div className="row mb-4">
+            <div className="col-lg-12 col-md-12 col-sm-12">
               <input
                 id="img-url"
                 className="form-control custom-input"
@@ -40,14 +49,39 @@ const AddProjectDialog = () => {
               />
             </div>
           </div>
-          <div className="row">
+
+          <div className="row mb-4">
             <div className="col-lg-12 col-md-12 col-sm-12">
-              <SkillComboBox number={"1"} />
+              <input
+                id="code-link"
+                className="form-control custom-input"
+                type="text"
+                placeholder="Code Link"
+                {...register("code-link", { required: true })}
+              />
+            </div>
+          </div>
+
+          <div className="row mb-4">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              <input
+                id="demo-link"
+                className="form-control custom-input"
+                type="text"
+                placeholder="Demo Link"
+                {...register("demo-link", { required: true })}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-lg-6 col-md-8 col-sm-12">
+              <ProjectTagComboBox />
             </div>
           </div>
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn customize-btn">
-              Create Account
+                Add Project
             </button>
           </div>
         </div>
