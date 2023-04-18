@@ -15,10 +15,7 @@ export default function Popup(props) {
   };
 
   const childrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, { handleFormSubmit: handleFormSubmit });
-    }
-    return child;
+    return React.cloneElement(child, { handleFormSubmit: handleFormSubmit });
   });
   return (
     <Dialog
