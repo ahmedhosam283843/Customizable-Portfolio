@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ProjectTagComboBox from "../../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
-import { useNavigate } from "react-router-dom";
 
 const AddProjectDialog = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();

@@ -4,6 +4,7 @@ import "./Experience.scss";
 import { images } from "../../constants";
 import { FaPlus} from "react-icons/fa";
 import Popup from "../../components/Popup/Popup";
+import AddSkillsExperienceDialog from "../../components/dialogs/AddSkillsExperienceDialog/AddSkillsExperienceDialog";
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
@@ -122,7 +123,8 @@ const Experience = () => {
           ))}
         </div>
       </div>
-      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}>
+      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} title="Add Skill/Experience">
+        <AddSkillsExperienceDialog  />
       </Popup>
     </div>
   );
