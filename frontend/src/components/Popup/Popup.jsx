@@ -1,9 +1,8 @@
 import React from "react";
-import { Dialog, DialogTitle, DialogContent} from "@material-ui/core";
-import Slide from '@material-ui/core/Slide';
-
-
-
+import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import Slide from "@material-ui/core/Slide";
+import { MdOutlineClose } from "react-icons/md";
+import "./popup.scss";
 
 export default function Popup(props) {
   const { title, children, openPopup, setOpenPopup } = props;
@@ -23,7 +22,12 @@ export default function Popup(props) {
       }}
     >
       <DialogTitle>
-        <div>Add New Project</div>
+        <div style={{ display: "flex" }}>
+          <div style={{ flexGrow: 1 }}>{title}</div>
+          <button className="close-btn" onClick={handleClose}>
+            <MdOutlineClose />
+          </button>
+        </div>
       </DialogTitle>
       <DialogContent dividers>{children}</DialogContent>
     </Dialog>
