@@ -9,6 +9,17 @@ export default function Popup(props) {
   const handleClose = () => {
     setOpenPopup(false);
   };
+
+  const handleFormSubmit = () => {
+    handleClose();
+  };
+
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { handleFormSubmit: handleFormSubmit });
+    }
+    return child;
+  });
   return (
     <Dialog
       open={openPopup}
@@ -29,7 +40,7 @@ export default function Popup(props) {
           </button>
         </div>
       </DialogTitle>
-      <DialogContent dividers>{children}</DialogContent>
+      <DialogContent dividers>{childrenWithProps}</DialogContent>
     </Dialog>
   );
 }

@@ -5,13 +5,14 @@ import ProjectTagComboBox from "../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
 import { useNavigate } from "react-router-dom";
 
-const AddProjectDialog = () => {
+const AddProjectDialog = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const onSubmit = (data) => {
     setData(data);
+    handleFormSubmit();
+    console.log(data);
   };
-  console.log(data);
   return (
     <div className="project-dialog">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>

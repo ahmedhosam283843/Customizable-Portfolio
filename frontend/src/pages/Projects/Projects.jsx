@@ -132,7 +132,6 @@ const Projects = () => {
         ))}
       </motion.div>
       <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} title="Add New Project">
-
         <AddProjectDialog/>
       </Popup>
     </div>
