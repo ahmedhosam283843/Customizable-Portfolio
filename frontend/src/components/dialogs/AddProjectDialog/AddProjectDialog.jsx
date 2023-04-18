@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import ProjectTagComboBox from "../comboBox/ProjectTagComboBox";
+import ProjectTagComboBox from "../../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
 import { useNavigate } from "react-router-dom";
 

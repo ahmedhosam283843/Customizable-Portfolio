@@ -5,7 +5,7 @@ import { FaPlus} from "react-icons/fa";
 import "./Projects.scss";
 import { images } from "../../constants";
 import Popup from "../../components/Popup/Popup";
-import AddProjectDialog from "../../components/dialogs/AddProjectDialog";
+import AddProjectDialog from "../../components/dialogs/AddProjectDialog/AddProjectDialog";
  
 
 const Projects = () => {

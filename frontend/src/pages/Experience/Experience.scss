@@ -11,6 +11,9 @@
     color: $blackColor;
     margin-left: 1.3rem;
     margin-bottom: 0.3rem;
+    &:hover{
+      cursor: pointer;
+    }
 
     @media screen and (max-width: 450px) {
       width: 30px;
