@@ -2,12 +2,13 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "./SkillsForm.scss";
-const SkillsForm = () => {
+const SkillsForm = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const onSubmit = (data) => {
     setData(data);
     console.log(data);
+    handleFormSubmit();
   };
 
   return (
@@ -25,7 +26,7 @@ const SkillsForm = () => {
               />
             </div>
           </div>
-          <div className="row mb-4">
+          <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">
               <input
                 id="skill-icon"
@@ -35,10 +36,15 @@ const SkillsForm = () => {
               />
             </div>
           </div>
-
-
-
         </div>
+
+        
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn customize-btn">
+            Add Skill
+          </button>
+        </div>
+
       </form>
     </div>
   );

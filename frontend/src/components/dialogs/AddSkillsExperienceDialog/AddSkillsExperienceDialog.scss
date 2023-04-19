@@ -2,17 +2,12 @@
     height: 2.9em;
   }
   
-  .customize-btn {
-    margin-top: 10%;
-    font-weight: 700;
-    width: 50%;
-    height: 2.9em;
-    transition: 0.8s;
-    color: #0275d8;
-    background-color: white;
+  .skills-experience-toggle{
+    display: flex;
+  justify-content: center;
   }
-  .customize-btn:hover {
-    background-color: #0275d8;
-    transition: 0.8s;
-    color: white;
+
+  .add-skills-experience{
+    display: flex;
+    flex-direction: column;
   }

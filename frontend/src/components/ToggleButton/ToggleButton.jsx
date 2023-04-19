@@ -4,12 +4,13 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import "./ToggleButton.scss";
 
-export default function SkillsExperienceToggleBtn() {
+export default function SkillsExperienceToggleBtn({ onChange }) {
   const [view, setView] = useState("skills");
 
   const handleView = (event, newView) => {
     if (newView !== null) {
       setView(newView);
+      onChange(newView); // call onViewChange callback function
     }
   };
 

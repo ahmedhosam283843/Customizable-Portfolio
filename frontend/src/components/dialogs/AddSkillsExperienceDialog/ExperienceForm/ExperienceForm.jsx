@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "./ExperienceForm.scss";
-const ExperienceForm = () => {
+const ExperienceForm = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const onSubmit = (data) => {
     setData(data);
     console.log(data);
+    handleFormSubmit();    
   };
 
   return (
@@ -36,7 +37,7 @@ const ExperienceForm = () => {
             </div>
           </div>
 
-          <div className="row mb-4">
+          <div className="row">
             <div className="col-lg-6 col-md-8 col-sm-12">
               <input
                 id="Start Year"
@@ -47,15 +48,16 @@ const ExperienceForm = () => {
               />
             </div>
           </div>
+        </div>
 
-
-
-
-
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn customize-btn">
+            Add Experience
+          </button>
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default ExperienceForm
+export default ExperienceForm;
