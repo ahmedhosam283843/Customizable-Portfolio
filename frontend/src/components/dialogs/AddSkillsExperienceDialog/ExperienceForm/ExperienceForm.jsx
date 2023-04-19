@@ -15,7 +15,7 @@ const ExperienceForm = () => {
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <div className="row mb-4">
-            <div className="col-lg-8 col-md-12 col-sm-12">
+            <div className="col-lg-12 col-md-12 col-sm-12">
               <input
                 id="company-name"
                 className="form-control custom-input"
@@ -27,7 +27,7 @@ const ExperienceForm = () => {
           </div>
           <div className="row mb-4">
             <div className="col-lg-12 col-md-12 col-sm-12">
-              <textarea
+              <input
                 id="title"
                 className="form-control custom-input"
                 placeholder="Title"
@@ -37,7 +37,7 @@ const ExperienceForm = () => {
           </div>
 
           <div className="row mb-4">
-            <div className="col-lg-12 col-md-12 col-sm-12">
+            <div className="col-lg-6 col-md-8 col-sm-12">
               <input
                 id="Start Year"
                 className="form-control custom-input"
