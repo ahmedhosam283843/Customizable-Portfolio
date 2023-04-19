@@ -1,30 +1,44 @@
-import React from 'react'
-import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
-import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import React from "react";
+import { useState } from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import "./ToggleButton.scss";
 
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-export default function ToggleButtons() {
-  const [view, setView] = useState('skills');
+export default function SkillsExperienceToggleBtn() {
+  const [view, setView] = useState("skills");
 
   const handleView = (event, newView) => {
-    setView(newView);
+    if (newView !== null) {
+      setView(newView);
+    }
+  };
+
+
+  const buttonStyle = {
+    minWidth: Math.max("Skill".length, "Experience".length) + 5 + "ch",
   };
 
   return (
-    <ToggleButtonGroup
-      value={view}
-      exclusive
-      onChange={handleView}
-      aria-label="skills/experience toggle"
-    >
-      <ToggleButton value="skills" aria-label="skills">
-        <FormatAlignLeftIcon />
-      </ToggleButton>
-      <ToggleButton value="experiences" aria-label="experiences">
-        <FormatAlignCenterIcon />
-      </ToggleButton>
-    </ToggleButtonGroup>
+
+      <ToggleButtonGroup
+        color="primary"
+        className="toggle-btn-group"
+        value={view}
+        exclusive
+        onChange={handleView}
+        aria-label="skills/experience toggle"
+      >
+        <ToggleButton value="skills" aria-label="skills" style={buttonStyle}>
+          <div>Skill</div>
+        </ToggleButton>
+        <ToggleButton
+          value="experiences"
+          aria-label="experiences"
+          style={buttonStyle}
+        >
+          <div>Experience</div>
+        </ToggleButton>
+      </ToggleButtonGroup>
+
   );
 }
