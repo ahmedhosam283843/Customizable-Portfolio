@@ -11,6 +11,7 @@ app.use("/portfolio", portfolioRouter);
 app.use("/projects", projectRouter);
 app.use("/skills", skillRouter);
 app.use("/experiences", experienceRouter);
+app.use("/login", loginRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
