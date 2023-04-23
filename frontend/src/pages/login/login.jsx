@@ -10,6 +10,7 @@ import "./styles.css";
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (formData) => {
     try {
@@ -18,7 +19,7 @@ export default function Login() {
         password: formData.password,
       });
       const token = response.data.accessToken;
-      console.log("Token: "+token);
+      console.log("Token: " + token);
       const rememberMe = formData.remember_me;
 
       if (rememberMe) {
@@ -29,6 +30,7 @@ export default function Login() {
 
       navigate("/home");
     } catch (error) {
+      setError("Incorrect email or password. Please try again.");
       console.log(error);
     }
     setData(data);
@@ -40,6 +42,7 @@ export default function Login() {
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-lg-4 col-md-8 col-sm-12">
+              {error && <div className="alert alert-danger">{error}</div>}
               <input
                 id="email"
                 className="form-control mb-3"
