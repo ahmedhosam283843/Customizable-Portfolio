@@ -1,10 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import userRouter from "./routers/userRouter.js";
-import portfolioRouter from "./routers/customizePortfolioRouters.js";
-import projectRouter from "./routers/projectRouter.js";
-import skillRouter from "./routers/skillRouter.js";
-import experienceRouter from "./routers/experienceRouter.js";
+import {skillRouter, loginRouter, projectRouter, portfolioRouter, userRouter, experienceRouter} from "./routers/index.js";
 const app = express();
 const PORT = 5000;
 
