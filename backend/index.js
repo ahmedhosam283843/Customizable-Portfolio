@@ -4,6 +4,7 @@ import userRouter from "./routers/userRouter.js";
 import portfolioRouter from "./routers/customizePortfolioRouters.js";
 import projectRouter from "./routers/projectRouter.js";
 import skillRouter from "./routers/skillRouter.js";
+import experienceRouter from "./routers/experienceRouter.js";
 const app = express();
 const PORT = 5000;
 
@@ -13,6 +14,7 @@ app.use("/users", userRouter);
 app.use("/portfolio", portfolioRouter);
 app.use("/projects", projectRouter);
 app.use("/skills", skillRouter);
+app.use("/experiences", experienceRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
