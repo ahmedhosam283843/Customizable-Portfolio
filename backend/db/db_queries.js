@@ -1,11 +1,14 @@
 import pool from "./db_pool.cjs";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 async function getUserByEmail(email) {
-  const result = await pool.query(
-    'SELECT * FROM "user" WHERE email = $1',
-    [email]
-  );
+  const result = await pool.query('SELECT * FROM "user" WHERE email = $1', [
+    email,
+  ]);
   return result.rows[0];
 }
 
@@ -18,16 +21,22 @@ const db_queries = {
         return response.status(401).send("Invalid credentials");
       }
       try {
+        console.log(process.env.ACCESS_TOKEN_SECRET);
         if (await bcrypt.compare(password, user.password)) {
-          response.status(200).send("Success");
+          const accessToken = jwt.sign(
+            user.user_id,
+            process.env.ACCESS_TOKEN_SECRET
+          );
+
+          response.status(200).json({ accessToken: accessToken });
         } else {
           response.status(401).send("Invalid credentials");
         }
-      } catch {
+      } catch (error) {
         response.status(500).send(error);
       }
-    } catch {
-      response.status(500).send();
+    } catch (error) {
+      response.status(500).send(error);
     }
   },
 
