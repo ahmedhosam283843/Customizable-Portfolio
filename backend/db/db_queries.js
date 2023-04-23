@@ -160,6 +160,49 @@ const db_queries = {
       }
     );
   },
+
+  getSkills: (request, response) => {
+    pool.query(
+      "SELECT * FROM skill ORDER BY user_id ASC",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  },
+
+  getSkillsByUserId: (request, response) => {
+    const id = parseInt(request.params.id);
+
+    pool.query(
+      "SELECT * FROM skill WHERE user_id = $1",
+      [id],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  },
+
+  createSkill: (request, response) => {
+    const { user_id, skill_name, icon_url } = request.body;
+
+    pool.query(
+      "INSERT INTO skill (user_id, skill_name, icon_url) VALUES ($1, $2, $3)",
+      [user_id, skill_name, icon_url],
+
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(201).send(`Skill added successfully`);
+      }
+    );
+  },
 };
 
 export default db_queries;
