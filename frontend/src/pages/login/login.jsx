@@ -2,17 +2,38 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "../../client/axios.js";
+import endpoints from "../../client/endpoints.js";
+
 import "./styles.css";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const navigate = useNavigate();
-  const onSubmit = (data) => {
-    navigate("/home");
+  const onSubmit = async (formData) => {
+    try {
+      const response = await axios.post(endpoints.login, {
+        email: formData.email,
+        password: formData.password,
+      });
+      const token = response.data.accessToken;
+      console.log("Token: "+token);
+      const rememberMe = formData.remember_me;
+
+      if (rememberMe) {
+        localStorage.setItem("token", token);
+      } else {
+        sessionStorage.setItem("token", token);
+      }
+
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
     setData(data);
   };
-  console.log(data);
+
   return (
     <div className="login">
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
