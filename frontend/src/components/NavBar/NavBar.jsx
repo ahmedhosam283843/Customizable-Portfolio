@@ -18,7 +18,11 @@ const NavBar = () => {
         {["home", "projects", "experience", "login"].map((item) => (
           <li className="app_flex p-text" key={`link-${item}`}>
             <div />
-            <Link to={"/" + item}>{item}</Link>
+            {item === "login" ? (
+              <Link to={"/" + item}>Logout</Link>
+            ) : (
+              <Link to={"/" + item}>{item}</Link>
+            )}
           </li>
         ))}
       </ul>
@@ -34,9 +38,15 @@ const NavBar = () => {
             <ul>
               {["home", "projects", "experience", "login"].map((item) => (
                 <li key={item}>
-                  <Link to={"/" + item} onClick={() => setToggle(false)}>
-                    {item}
-                  </Link>
+                  {item === "login" ? (
+                    <Link to={"/" + item} onClick={() => setToggle(false)}>
+                      Logout
+                    </Link>
+                  ) : (
+                    <Link to={"/" + item} onClick={() => setToggle(false)}>
+                      {item}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
