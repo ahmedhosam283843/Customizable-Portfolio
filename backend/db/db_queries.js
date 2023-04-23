@@ -1,7 +1,7 @@
 import pool from "./db_pool.cjs";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 
@@ -40,27 +40,27 @@ const db_queries = {
     }
   },
 
-  getUsers: (request, response) => {
-    pool.query(
-      'SELECT * FROM "user" ORDER BY user_id ASC',
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).json(results.rows);
-      }
-    );
-  },
+  // getUsers: (request, response) => {
+  //   pool.query(
+  //     'SELECT * FROM "user" ORDER BY user_id ASC',
+  //     (error, results) => {
+  //       if (error) {
+  //         throw error;
+  //       }
+  //       response.status(200).json(results.rows);
+  //     }
+  //   );
+  // },
 
   getUserById: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       'SELECT * FROM "user" WHERE user_id = $1',
       [id],
       (error, results) => {
         if (error) {
-          throw error;
+          response.status(500).send(error);
         }
         response.status(200).json(results.rows);
       }
@@ -89,7 +89,7 @@ const db_queries = {
   },
 
   deleteUser: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       'DELETE FROM "user" WHERE user_id = $1',
