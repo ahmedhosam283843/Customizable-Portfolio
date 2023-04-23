@@ -6,7 +6,7 @@ const PORT = 5000;
 
 app.use(bodyParser.json());
 
-app.use("/users", userRouter);
+app.use("/user", userRouter);
 app.use("/portfolio", portfolioRouter);
 app.use("/projects", projectRouter);
 app.use("/skills", skillRouter);

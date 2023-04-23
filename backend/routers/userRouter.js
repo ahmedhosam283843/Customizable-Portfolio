@@ -8,6 +8,6 @@ router.get("/", authenticateToken, db_queries.getUserById);
 
 router.post("/", db_queries.createUser);
 
-router.delete("/:id", authenticateToken,db_queries.deleteUser);
+router.delete("/", authenticateToken,db_queries.deleteUser);
 
 export default router;

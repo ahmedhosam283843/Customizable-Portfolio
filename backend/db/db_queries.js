@@ -104,7 +104,7 @@ const db_queries = {
   },
 
   getPortfolioById: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       "SELECT * FROM customize_portfolio WHERE user_id = $1",
@@ -118,17 +118,17 @@ const db_queries = {
     );
   },
 
-  getPortfolio: (request, response) => {
-    pool.query(
-      "SELECT * FROM customize_portfolio ORDER BY user_id ASC",
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).json(results.rows);
-      }
-    );
-  },
+  // getPortfolio: (request, response) => {
+  //   pool.query(
+  //     "SELECT * FROM customize_portfolio ORDER BY user_id ASC",
+  //     (error, results) => {
+  //       if (error) {
+  //         throw error;
+  //       }
+  //       response.status(200).json(results.rows);
+  //     }
+  //   );
+  // },
 
   createPortfolio: (request, response) => {
     const { user_id, image_url, main_skill_1, main_skill_2, main_skill_3 } =
@@ -148,7 +148,7 @@ const db_queries = {
   },
 
   getProjectsByUserId: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       "SELECT * FROM project WHERE user_id = $1",
@@ -216,7 +216,7 @@ const db_queries = {
   },
 
   getSkillsByUserId: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       "SELECT * FROM skill WHERE user_id = $1",
@@ -259,7 +259,7 @@ const db_queries = {
   },
 
   getExperiencesByUserId: (request, response) => {
-    const id = parseInt(request.params.id);
+    const id = parseInt(request.user);
 
     pool.query(
       "SELECT * FROM experience WHERE user_id = $1 ORDER BY start_year DESC",
