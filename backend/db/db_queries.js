@@ -27,20 +27,25 @@ const db_queries = {
     );
   },
 
-  createUser: (request, response) => {
+  createUser: async (request, response) => {
     const { name, email, password, address, city, state, zip } = request.body;
 
-    pool.query(
-      'INSERT INTO "user" (name, email, password, address, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-      [name, email, password, address, city, state, zip],
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-      (error, results) => {
-        if (error) {
-          throw error;
+      pool.query(
+        'INSERT INTO "user" (name, email, password, address, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+        [name, email, hashedPassword, address, city, state, zip],
+        (error, results) => {
+          if (error) {
+            throw error;
+          }
+          response.status(201).send(`User added successfully`);
         }
-        response.status(201).send(`User added successfully`);
-      }
-    );
+      );
+    } catch {
+      response.status(500).send();
+    }
   },
 
   deleteUser: (request, response) => {
@@ -162,15 +167,12 @@ const db_queries = {
   },
 
   getSkills: (request, response) => {
-    pool.query(
-      "SELECT * FROM skill ORDER BY user_id ASC",
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).json(results.rows);
+    pool.query("SELECT * FROM skill ORDER BY user_id ASC", (error, results) => {
+      if (error) {
+        throw error;
       }
-    );
+      response.status(200).json(results.rows);
+    });
   },
 
   getSkillsByUserId: (request, response) => {
@@ -205,7 +207,6 @@ const db_queries = {
   },
 
   getExperiences: (request, response) => {
-  
     pool.query(
       "SELECT * FROM experience ORDER BY user_id ASC",
       (error, results) => {
@@ -213,7 +214,6 @@ const db_queries = {
           throw error;
         }
         response.status(200).json(results.rows);
-        
       }
     );
   },
@@ -234,12 +234,7 @@ const db_queries = {
   },
 
   createExperience: (request, response) => {
-    const {
-      user_id,
-      company_name,
-      title,
-      start_year,
-    } = request.body;
+    const { user_id, company_name, title, start_year } = request.body;
 
     pool.query(
       "INSERT INTO experience (user_id, company_name, title, start_year) VALUES ($1, $2, $3, $4)",
