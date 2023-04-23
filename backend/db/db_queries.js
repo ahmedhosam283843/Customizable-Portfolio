@@ -2,17 +2,18 @@ import pool from "./db_pool.cjs";
 import bcrypt from "bcrypt";
 
 async function getUserByEmail(email) {
-  const { rows } = await pool.query("SELECT * FROM user WHERE email = $1", [
-    email,
-  ]);
-  return rows[0];
+  const result = await pool.query(
+    'SELECT * FROM "user" WHERE email = $1',
+    [email]
+  );
+  return result.rows[0];
 }
 
 const db_queries = {
   login: async (request, response) => {
     const { email, password } = request.body;
     try {
-      const user = getUserByEmail(email);
+      const user = await getUserByEmail(email);
       if (user == null) {
         return response.status(401).send("Invalid credentials");
       }
@@ -23,7 +24,7 @@ const db_queries = {
           response.status(401).send("Invalid credentials");
         }
       } catch {
-        response.status(500).send();
+        response.status(500).send(error);
       }
     } catch {
       response.status(500).send();
