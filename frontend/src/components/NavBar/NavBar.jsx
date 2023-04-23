@@ -19,7 +19,15 @@ const NavBar = () => {
           <li className="app_flex p-text" key={`link-${item}`}>
             <div />
             {item === "login" ? (
-              <Link to={"/" + item}>Logout</Link>
+              <Link
+                to={"/" + item}
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  sessionStorage.removeItem("token");
+                }}
+              >
+                Logout
+              </Link>
             ) : (
               <Link to={"/" + item}>{item}</Link>
             )}
@@ -39,7 +47,14 @@ const NavBar = () => {
               {["home", "projects", "experience", "login"].map((item) => (
                 <li key={item}>
                   {item === "login" ? (
-                    <Link to={"/" + item} onClick={() => setToggle(false)}>
+                    <Link
+                      to={"/" + item}
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        sessionStorage.removeItem("token");
+                        setToggle(false);
+                      }}
+                    >
                       Logout
                     </Link>
                   ) : (
