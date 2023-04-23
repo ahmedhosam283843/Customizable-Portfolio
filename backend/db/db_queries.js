@@ -203,6 +203,56 @@ const db_queries = {
       }
     );
   },
+
+  getExperiences: (request, response) => {
+  
+    pool.query(
+      "SELECT * FROM experience ORDER BY user_id ASC",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+        
+      }
+    );
+  },
+
+  getExperiencesByUserId: (request, response) => {
+    const id = parseInt(request.params.id);
+
+    pool.query(
+      "SELECT * FROM experience WHERE user_id = $1 ORDER BY start_year DESC",
+      [id],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  },
+
+  createExperience: (request, response) => {
+    const {
+      user_id,
+      company_name,
+      title,
+      start_year,
+    } = request.body;
+
+    pool.query(
+      "INSERT INTO experience (user_id, company_name, title, start_year) VALUES ($1, $2, $3, $4)",
+      [user_id, company_name, title, start_year],
+
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(201).send(`Experience added successfully`);
+      }
+    );
+  },
 };
 
 export default db_queries;
