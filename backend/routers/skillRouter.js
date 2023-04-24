@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get("/", authenticateToken, db_queries.getSkillsByUserId);
 
-router.post("/", db_queries.createSkill);
+router.post("/", authenticateToken, db_queries.createSkill);
 
 export default router;

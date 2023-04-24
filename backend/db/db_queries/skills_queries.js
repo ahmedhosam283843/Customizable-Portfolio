@@ -16,7 +16,8 @@ async function getSkillsByUserId(request, response) {
 }
 
 async function createSkill(request, response) {
-  const { user_id, skill_name, icon_url } = request.body;
+  const { skill_name, icon_url } = request.body;
+  const user_id = parseInt(request.user);
 
   pool.query(
     "INSERT INTO skill (user_id, skill_name, icon_url) VALUES ($1, $2, $3)",
