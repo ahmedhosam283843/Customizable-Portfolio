@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { HiX, HiMenuAlt4 } from "react-icons/hi";
 import axios from "../../client/axios.js";
 import endpoints from "../../client/endpoints.js";
+import { useNavigate } from "react-router-dom";
+
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const [username, setUserName] = useState("");
-  const token =
-  localStorage.getItem("token") || sessionStorage.getItem("token");
+  const navigate = useNavigate();
   useEffect(() => {
-
+    const token =
+    localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token) {
       axios
         .get(endpoints.user, {
@@ -25,8 +27,11 @@ const NavBar = () => {
         .catch((error) => {
           console.log(error);
         });
+    }else{
+      //navigate back to login page if no token is found
+      navigate("/login");
     }
-  }, [token]);
+  }, []);
 
   return (
     <nav className="app-navbar">

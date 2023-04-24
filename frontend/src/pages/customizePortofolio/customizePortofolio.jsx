@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SkillComboBox from "../../components/comboBox/SkillComboBox";
 import { useNavigate } from "react-router-dom";
 import axios from "../../client/axios.js";
@@ -47,6 +47,14 @@ export default function CustomizePortofolio() {
     setData(data);
     console.log(data);
   };
+
+  useEffect(() => {
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) {
+      navigate("/login"); //navigate back to login page if no token is found
+    }
+  }, []);
 
   return (
     <div className="customize">
@@ -115,7 +123,6 @@ export default function CustomizePortofolio() {
           </div>
         </div>
       </form>
-
     </div>
   );
 }
