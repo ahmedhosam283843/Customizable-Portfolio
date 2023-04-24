@@ -1,18 +1,49 @@
 import "./NavBar.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { HiX, HiMenuAlt4 } from "react-icons/hi";
+import axios from "../../client/axios.js";
+import endpoints from "../../client/endpoints.js";
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
+  const [username, setUserName] = useState("");
+  const token =
+  localStorage.getItem("token") || sessionStorage.getItem("token");
+  useEffect(() => {
+
+    if (token) {
+      axios
+        .get(endpoints.user, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log(response.data[0]);
+          setUserName(response.data[0].name);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [token]);
+
   return (
     <nav className="app-navbar">
-      <div className="app-navbar-name">
-        <p>
-          Ah <span>med</span>
-        </p>
-      </div>
+      {username && (
+        <div className="app-navbar-name">
+          <p>
+            {username
+              .split(" ")[0]
+              .substring(0, Math.floor(username.split(" ")[0].length / 2))}
+            <span>
+              {username
+                .split(" ")[0]
+                .substring(Math.floor(username.split(" ")[0].length / 2))}
+            </span>
+          </p>
+        </div>
+      )}
 
       <ul className="app-navbar-links">
         {["home", "projects", "experience", "login"].map((item) => (
