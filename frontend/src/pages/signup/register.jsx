@@ -2,15 +2,29 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "../../client/axios.js";
+import endpoints from "../../client/endpoints.js";
 import "./styles.css";
+
 export default function Register() {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
   const navigate = useNavigate();
-  const onSubmit = (data) => {
-    navigate("/customize-profile");
-    setData(data);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(endpoints.register, data); // use Axios to post data to backend
+      console.log(response.data);
+      const token = response.data.accessToken;
+      console.log("Register Token: " + token);
+      sessionStorage.setItem("token", token);
+      setData(data);
+      navigate("/customize-profile");
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   console.log(data);
   return (
     <div className="register">
