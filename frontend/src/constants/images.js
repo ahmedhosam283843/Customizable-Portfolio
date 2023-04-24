@@ -1,35 +1,42 @@
-import profile from '../assets/profile.png';
-import circle from '../assets/circle.svg';
-import flutter from '../assets/flutter.png';
-import python from '../assets/python.png';
-import javascript from '../assets/javascript.png';
-import react from '../assets/react.png';
-import cpp from '../assets/cpp.png';
-import git from '../assets/git.png';
-import gymtopia from '../assets/gymtopia.png';
-import gazara from '../assets/gazara.png';
+import profile from "../assets/profile.png";
+import circle from "../assets/circle.svg";
+import flutter from "../assets/flutter.png";
+import python from "../assets/python.png";
+import javascript from "../assets/javascript.png";
+import react from "../assets/react.png";
+import cpp from "../assets/cpp.png";
+import git from "../assets/git.png";
+import gymtopia from "../assets/gymtopia.png";
+import gazara from "../assets/gazara.png";
+import kotlin from "../assets/kotlin.png";
+import java from "../assets/java.png";
 
 function getImage(name) {
   switch (name) {
-    case 'gazara':
+    case "gazara":
       return gazara;
-    case 'git':
+    case "git":
       return git;
-    case 'profile':
+    case "profile":
       return profile;
-    case 'gymtopia':
+    case "gymtopia":
       return gymtopia;
-    case 'circle':
+    case "java":
+      return java;
+    case "circle":
       return circle;
-    case 'flutter':
+    case "flutter":
       return flutter;
-    case 'python':
+    case "python":
       return python;
-    case 'javascript':
+    case "javascript":
       return javascript;
-    case 'react':
+    case "react":
       return react;
-    case 'cpp':
+    case "kotlin":
+      return kotlin;
+
+    case "cpp":
       return cpp;
     default:
       return null;
@@ -44,7 +51,9 @@ export default {
   react,
   cpp,
   gazara,
+  kotlin,
   gymtopia,
+  java,
   git,
   javascript,
   getImage,
