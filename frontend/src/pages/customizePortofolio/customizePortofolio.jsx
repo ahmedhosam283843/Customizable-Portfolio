@@ -2,16 +2,30 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import SkillComboBox from "../../components/comboBox/SkillComboBox";
 import { useNavigate } from "react-router-dom";
+import axios from "../../client/axios.js";
+import endpoints from "../../client/endpoints.js";
 import "./styles.css";
 export default function CustomizePortofolio() {
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState();
-  const navigate = useNavigate();
-  const onSubmit = (data) => {
-    navigate("/home");
-    setData(data);
+  const { register, handleSubmit, control } = useForm();
+  const [data, setData] = useState({
+    "skill-1": "python",
+    "skill-2": "kotlin",
+    "skill-3": "java",
+  });
+  const [error, setError] = useState(null);
+  const handleSkillChange = (skillNumber, selectedSkill) => {
+    setData((prevState) => ({
+      ...prevState,
+      ["skill" + skillNumber]: selectedSkill,
+    }));
   };
-  console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+
+    setData(data);
+    console.log(data);
+  };
 
   return (
     <div className="customize">
@@ -47,13 +61,13 @@ export default function CustomizePortofolio() {
           </div>
           <div className="row mt-4">
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={"1"} />
+              <SkillComboBox number={1} control={control} defaultValue={"python"} />
             </div>
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={"2"} />
+              <SkillComboBox number={2} control={control} defaultValue={"kotlin"} />
             </div>
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={"3"} />
+              <SkillComboBox number={3} control={control} defaultValue={"java"} />
             </div>
           </div>
           <div className="d-flex justify-content-center">

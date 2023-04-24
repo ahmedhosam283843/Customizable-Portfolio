@@ -1,15 +1,23 @@
-export default function SkillComboBox(number) {
- 
+import { useController } from "react-hook-form";
+
+export default function SkillComboBox({ number, control, defaultValue }) {
+  const {
+    field: { onChange, onBlur, value },
+  } = useController({
+    name: `skill-${number}`,
+    control,
+    defaultValue,
+  });
+
   return (
-    <div class="form-floating">
+    <div className="form-floating">
       <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
+        className="form-select"
+        id={`skill-${number}`}
+        aria-label={`Main Skill ${number}`}
+        {...{ onBlur, onChange, value }}
       >
-        <option selected value="python">
-          Python
-        </option>
+        <option value="python">Python</option>
         <option value="kotlin">Kotlin</option>
         <option value="java">Java</option>
         <option value="react">React</option>
@@ -17,11 +25,8 @@ export default function SkillComboBox(number) {
         <option value="flutter">Flutter</option>
         <option value="cpp">Cpp</option>
         <option value="c#">C#</option>
-        <option value="python">Python</option>
       </select>
-      <label htmlFor="floatingSelectGrid">
-        {"Main Skill " + number.number}{" "}
-      </label>
+      <label htmlFor={`skill-${number}`}>{"Main Skill " + number}</label>
     </div>
   );
 }
