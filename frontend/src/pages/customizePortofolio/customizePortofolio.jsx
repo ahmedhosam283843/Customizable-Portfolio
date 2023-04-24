@@ -13,16 +13,37 @@ export default function CustomizePortofolio() {
     "skill-3": "java",
   });
   const [error, setError] = useState(null);
-  const handleSkillChange = (skillNumber, selectedSkill) => {
-    setData((prevState) => ({
-      ...prevState,
-      ["skill" + skillNumber]: selectedSkill,
-    }));
-  };
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-
+    try {
+      const token =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      const response = await axios.post(
+        endpoints.portfolio,
+        {
+          job_title: data["job-title"],
+          image_url: data["img-url"],
+          main_skill_1: data["skill-1"],
+          main_skill_2: data["skill-2"],
+          main_skill_3: data["skill-3"],
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status === 201) {
+        navigate("/home");
+        setData(data);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        setError("Unauthorized. Please log in to continue.");
+      } else {
+        setError("An error occurred. Please try again later.");
+      }
+    }
     setData(data);
     console.log(data);
   };
@@ -32,6 +53,11 @@ export default function CustomizePortofolio() {
       <h1 className="customize-header">
         Customize My <span id="customize-colored">Portofolio</span>
       </h1>
+      {error && (
+        <div className="alert alert-danger mt-4" role="alert">
+          {error}
+        </div>
+      )}
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <div className="row mb-4">
@@ -61,13 +87,25 @@ export default function CustomizePortofolio() {
           </div>
           <div className="row mt-4">
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={1} control={control} defaultValue={"python"} />
+              <SkillComboBox
+                number={1}
+                control={control}
+                defaultValue={"python"}
+              />
             </div>
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={2} control={control} defaultValue={"kotlin"} />
+              <SkillComboBox
+                number={2}
+                control={control}
+                defaultValue={"kotlin"}
+              />
             </div>
             <div className="col-lg-4 col-md-12 col-sm-12 mb-2">
-              <SkillComboBox number={3} control={control} defaultValue={"java"} />
+              <SkillComboBox
+                number={3}
+                control={control}
+                defaultValue={"java"}
+              />
             </div>
           </div>
           <div className="d-flex justify-content-center">
@@ -77,6 +115,7 @@ export default function CustomizePortofolio() {
           </div>
         </div>
       </form>
+
     </div>
   );
 }
