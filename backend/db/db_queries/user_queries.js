@@ -23,13 +23,15 @@ async function createUser(request, response) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     pool.query(
-      'INSERT INTO "user" (name, email, password, address, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      'INSERT INTO "user" (name, email, password, address, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING user_id',
       [name, email, hashedPassword, address, city, state, zip],
       (error, results) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`User added successfully`);
+        const userId = results.rows[0].user_id;
+        const accessToken = jwt.sign(userId, process.env.ACCESS_TOKEN_SECRET);
+        response.status(201).json({ accessToken: accessToken });
       }
     );
   } catch {
