@@ -19,12 +19,12 @@ async function getPortfolioById(request, response){
 
   async function createPortfolio (request, response) {
     const user_id = parseInt(request.user);
-    const {image_url, main_skill_1, main_skill_2, main_skill_3 } =
+    const {job_title, image_url, main_skill_1, main_skill_2, main_skill_3 } =
       request.body;
 
     pool.query(
-      "INSERT INTO customize_portfolio (user_id, image_url, main_skill_1, main_skill_2, main_skill_3) VALUES ($1, $2, $3, $4, $5)",
-      [user_id, image_url, main_skill_1, main_skill_2, main_skill_3],
+      "INSERT INTO customize_portfolio (job_title, user_id, image_url, main_skill_1, main_skill_2, main_skill_3) VALUES ($1, $2, $3, $4, $5)",
+      [job_title, user_id, image_url, main_skill_1, main_skill_2, main_skill_3],
 
       (error, results) => {
         if (error) {
