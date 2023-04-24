@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get("/", authenticateToken, db_queries.getExperiencesByUserId);
 
-router.post("/", db_queries.createExperience);
+router.post("/", authenticateToken,db_queries.createExperience);
 
 export default router;

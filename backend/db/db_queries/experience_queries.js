@@ -16,8 +16,8 @@ async function getExperiencesByUserId(request, response) {
 }
 
 async function createExperience(request, response) {
-  const { user_id, company_name, title, start_year } = request.body;
-
+  const { company_name, title, start_year } = request.body;
+  const user_id = parseInt(request.user);
   pool.query(
     "INSERT INTO experience (user_id, company_name, title, start_year) VALUES ($1, $2, $3, $4)",
     [user_id, company_name, title, start_year],
