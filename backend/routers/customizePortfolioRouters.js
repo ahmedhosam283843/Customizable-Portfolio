@@ -5,6 +5,6 @@ import authenticateToken from "../middlewares/authenticateToken.js";
 const router = express.Router();
 
 router.get("/", authenticateToken, db_queries.getPortfolioById);
-router.post("/", db_queries.createPortfolio);
+router.post("/",authenticateToken , db_queries.createPortfolio);
 
 export default router;

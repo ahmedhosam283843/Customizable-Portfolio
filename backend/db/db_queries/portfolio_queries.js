@@ -18,7 +18,8 @@ async function getPortfolioById(request, response){
   
 
   async function createPortfolio (request, response) {
-    const { user_id, image_url, main_skill_1, main_skill_2, main_skill_3 } =
+    const user_id = parseInt(request.user);
+    const {image_url, main_skill_1, main_skill_2, main_skill_3 } =
       request.body;
 
     pool.query(
