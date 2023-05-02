@@ -1,6 +1,6 @@
-# Customizable Portfolio
+# Portify
 
-Customizable Portfolio is a responsive, customizable portfolio website template that you can use to showcase your work and projects. The template is built with HTML, CSS, and JavaScript.
+Portify is a responsive, customizable portfolio website template that you can use to showcase your work and projects. The template is built with HTML, CSS, and JavaScript.
 
 ## Technologies Used
 This project uses the following technologies:
@@ -21,7 +21,7 @@ To run this application locally, you'll need to have Node.js and npm (or yarn) i
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/ahmedhosam283843/Customizable-Portfolio.git
+    git clone https://github.com/ahmedhosam283843/Portify.git
     ```
 
 2. Install the dependencies:
