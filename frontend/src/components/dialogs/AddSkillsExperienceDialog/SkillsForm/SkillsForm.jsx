@@ -2,15 +2,44 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "./SkillsForm.scss";
+import axios from "../../../../client/axios.js";
+import endpoints from "../../../../client/endpoints.js";
 const SkillsForm = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
-  const onSubmit = (data) => {
+  const onSumit = (data) => {
     setData(data);
     console.log(data);
     handleFormSubmit();
   };
 
+
+  const onSubmit = async (data) => {
+    try {
+      const token =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      const response = await axios.post(
+        endpoints.skills,
+        {
+          skill_name: data["skill-name"],
+          icon_url: data["skill-icon"],
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status === 201) {
+        handleFormSubmit();
+        setData(data);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    handleFormSubmit();
+    setData(data);
+    console.log(data);
+  };
   return (
     <div className="skills-form">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
