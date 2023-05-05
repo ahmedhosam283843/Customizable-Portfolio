@@ -2,72 +2,51 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Experience.scss";
 import { images } from "../../constants";
-import { FaPlus} from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Popup from "../../components/Popup/Popup";
 import AddSkillsExperienceDialog from "../../components/dialogs/AddSkillsExperienceDialog/AddSkillsExperienceDialog";
-
+import axios from "../../client/axios.js";
+import endpoints from "../../client/endpoints.js";
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
-
-
-  const experienceData = [
-    {
-      works: [
-        {
-          _type: "workExperience",
-          company: "Coformatique",
-          desc: "I worked as an android developer",
-          name: "Android Developer",
-        },
-      ],
-      year: "2022",
-    },
-    {
-      works: [
-        {
-          _type: "workExperience",
-          company: "Intelligent System Labs",
-          desc: "I worked as an research assistant",
-          name: "Research Assistant ",
-        },
-      ],
-      year: "2021",
-    },
-    {
-      works: [
-        {
-          _type: "workExperience",
-          company: "Weballo",
-          desc: "I worked as an android developer",
-          name: "Android Developer",
-        },
-      ],
-      year: "2019",
-    },
-  ];
-  const skillsData = [
-    {
-      name: "cpp",
-      icon: "cpp",
-    },
-    {
-      name: "React",
-      icon: "react",
-    },
-    {
-      name: "git",
-      icon: "git",
-    },
-    {
-      name: "python",
-      icon: "python",
-    },
-  ];
+  const navigate = useNavigate();
   useEffect(() => {
-    setExperiences(experienceData);
-    setSkills(skillsData);
+    const token =
+      localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (token) {
+      axios
+        .get(endpoints.skills, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log("skills:");
+          console.log(response.data);
+          setSkills(response.data);
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+
+
+        axios
+        .get(endpoints.experiences, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          setExperiences(response.data);
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      //navigate back to login page if no token is found
+      navigate("/login");
+    }
   }, []);
 
   return (
@@ -84,37 +63,36 @@ const Experience = () => {
               transition={{ duration: 0.9 }}
               whileInView={{ scale: [0.5, 1], y: [-500, 0] }}
               className="app-skills-item app_flex"
-              key={skill.name}
+              key={skill.skill_name}
             >
               <div
                 className="app_flex"
-                style={{ backgroundColor: skill.bgColor }}
               >
-                <img src={images.getImage(skill.icon)} alt={skill.name} />
+                <img src={skill.icon_url} alt={skill.skill_name} />
               </div>
-              <p className="p-text">{skill.name}</p>
+              <p className="p-text">{skill.skill_name}</p>
             </motion.div>
           ))}
         </motion.div>
         <div className="app-experience">
           {experiences?.map((experience) => (
-            <motion.div className="app-experience-item" key={experience.year}>
+            <motion.div className="app-experience-item" key={experience.start_year}>
               <div className="app-experience-year">
-                <p className="b-text">{experience.year}</p>
+                <p className="b-text">{experience.start_year}</p>
               </div>
               <motion.div className="app-experience-works">
-                {experience.works.map((work) => (
+                {experiences.map((work) => (
                   <>
                     <motion.div
-                      key={work.name}
+                      key={work.title}
                       whileInView={{ opacity: [0, 1], x: [-100, 0] }}
                       transition={{ duration: 0.9 }}
                       className="app-experience-work"
                       data-for={work.name}
                       data-tip
                     >
-                      <h4 className="b-text">{work.name}</h4>
-                      <p className="p-text">{work.company}</p>
+                      <h4 className="b-text">{work.title}</h4>
+                      <p className="p-text">{work.company_name}</p>
                     </motion.div>
                   </>
                 ))}
@@ -123,8 +101,12 @@ const Experience = () => {
           ))}
         </div>
       </div>
-      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} title="Add Skill/Experience">
-        <AddSkillsExperienceDialog  />
+      <Popup
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        title="Add Skill/Experience"
+      >
+        <AddSkillsExperienceDialog />
       </Popup>
     </div>
   );
