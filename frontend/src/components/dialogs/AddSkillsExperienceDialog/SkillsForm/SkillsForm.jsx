@@ -7,11 +7,6 @@ import endpoints from "../../../../client/endpoints.js";
 const SkillsForm = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
-  const onSumit = (data) => {
-    setData(data);
-    console.log(data);
-    handleFormSubmit();
-  };
 
 
   const onSubmit = async (data) => {
