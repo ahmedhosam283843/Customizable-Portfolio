@@ -75,30 +75,32 @@ const Experience = () => {
           ))}
         </motion.div>
         <div className="app-experience">
-          {experiences?.map((experience) => (
-            <motion.div className="app-experience-item" key={experience.start_year}>
-              <div className="app-experience-year">
-                <p className="b-text">{experience.start_year}</p>
-              </div>
-              <motion.div className="app-experience-works">
-                {experiences.map((work) => (
-                  <>
-                    <motion.div
-                      key={work.title}
-                      whileInView={{ opacity: [0, 1], x: [-100, 0] }}
-                      transition={{ duration: 0.9 }}
-                      className="app-experience-work"
-                      data-for={work.name}
-                      data-tip
-                    >
-                      <h4 className="b-text">{work.title}</h4>
-                      <p className="p-text">{work.company_name}</p>
-                    </motion.div>
-                  </>
-                ))}
+          {Array.from(new Set(experiences.map((exp) => exp.start_year))) //extract unique years
+            .sort((a, b) => b - a)
+            .map((year) => (
+              <motion.div className="app-experience-item" key={year}>
+                <div className="app-experience-year">
+                  <p className="b-text">{year}</p>
+                </div>
+                <motion.div className="app-experience-works">
+                  {experiences
+                    .filter((exp) => exp.start_year === year) //only show experiences for the current year
+                    .map((exp) => (
+                      <motion.div
+                        key={exp.title}
+                        whileInView={{ opacity: [0, 1], x: [-100, 0] }}
+                        transition={{ duration: 0.9 }}
+                        className="app-experience-work"
+                        data-for={exp.name}
+                        data-tip
+                      >
+                        <h4 className="b-text">{exp.title}</h4>
+                        <p className="p-text">{exp.company_name}</p>
+                      </motion.div>
+                    ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
         </div>
       </div>
       <Popup
