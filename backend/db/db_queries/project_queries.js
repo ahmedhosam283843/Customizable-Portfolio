@@ -16,8 +16,8 @@ async function getProjectsByUserId(request, response) {
 }
 
 async function createProject(request, response) {
+  const user_id = parseInt(request.user);
   const {
-    user_id,
     project_title,
     description,
     image_url,
@@ -25,7 +25,6 @@ async function createProject(request, response) {
     demo_link,
     tag,
   } = request.body;
-
   pool.query(
     "INSERT INTO project (user_id, project_title, description, image_url, code_link, demo_link, tag) VALUES ($1, $2, $3, $4, $5, $6, $7)",
     [user_id, project_title, description, image_url, code_link, demo_link, tag],

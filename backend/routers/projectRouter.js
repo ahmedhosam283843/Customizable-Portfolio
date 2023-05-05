@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get("/", authenticateToken, db_queries.getProjectsByUserId);
 
-router.post("/", db_queries.createProject);
+router.post("/", authenticateToken, db_queries.createProject);
 
 export default router;
