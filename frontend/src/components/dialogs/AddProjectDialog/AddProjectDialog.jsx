@@ -3,15 +3,44 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ProjectTagComboBox from "../../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
+import axios from "../../../client/axios.js";
+import endpoints from "../../../client/endpoints.js";
 
 const AddProjectDialog = ({handleFormSubmit}) => {
   const { register, handleSubmit } = useForm();
   const [data, setData] = useState();
-  const onSubmit = (data) => {
-    setData(data);
+
+  const onSubmit = async (data) => {
+    try {
+      const token =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      const response = await axios.post(
+        endpoints.projects,
+        {
+          project_title: data["project-title"],
+          description: data["project-description"],
+          image_url: data["img-url"],
+          code_link: data["code-link"],
+          demo_link: data["demo-link"],
+          tag: data["tag"],
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (response.status === 201) {
+        handleFormSubmit();
+        setData(data);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
     handleFormSubmit();
+    setData(data);
     console.log(data);
   };
+
   return (
     <div className="project-dialog">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
