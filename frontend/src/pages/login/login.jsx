@@ -51,7 +51,7 @@ export default function Login() {
                 className="form-control mb-3"
                 type="email"
                 placeholder="Email"
-                {...register("email", { required: true })}
+                {...register("email", { required: true , pattern: /^\S+@\S+$/i})} //validate email
               />
               <input
                 type="password"
