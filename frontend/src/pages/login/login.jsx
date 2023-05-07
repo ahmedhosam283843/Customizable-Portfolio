@@ -21,6 +21,9 @@ export default function Login() {
       const token = response.data.accessToken;
       console.log("Token: " + token);
       const rememberMe = formData.remember_me;
+      // remove token from local and session storage
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
 
       if (rememberMe) {
         localStorage.setItem("token", token);
