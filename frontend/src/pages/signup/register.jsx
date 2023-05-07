@@ -39,6 +39,7 @@ export default function Register() {
           {Object.keys(errors).length > 0 && (
             <div className="alert alert-danger">
               {Object.values(errors).map((error) => (
+                error.message.length > 0 && // only display error message if there is one
                 <p key={error.message}>{'*' + error.message}</p>
               ))}
             </div>
@@ -85,7 +86,7 @@ export default function Register() {
                   required: true,
                   pattern: {
                     value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g, //validate password
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/g, //validate password
                     message:
                       "Password must contain at least 8 characters including an uppercase letter, lowercase letter, special character, and number",
                   },
