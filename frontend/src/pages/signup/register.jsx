@@ -20,6 +20,9 @@ export default function Register() {
     try {
       const response = await axios.post(endpoints.register, data); // use Axios to post data to backend
       console.log(response.data);
+      // remove token from local and session storage
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       const token = response.data.accessToken;
       console.log("Register Token: " + token);
       sessionStorage.setItem("token", token);
@@ -38,10 +41,12 @@ export default function Register() {
           {/* Display error box from errors*/}
           {Object.keys(errors).length > 0 && (
             <div className="alert alert-danger">
-              {Object.values(errors).map((error) => (
-                error.message.length > 0 && // only display error message if there is one
-                <p key={error.message}>{'*' + error.message}</p>
-              ))}
+              {Object.values(errors).map(
+                (error) =>
+                  error.message.length > 0 && ( // only display error message if there is one
+                    <p key={error.message}>{"*" + error.message}</p>
+                  )
+              )}
             </div>
           )}
           <div className="row">
