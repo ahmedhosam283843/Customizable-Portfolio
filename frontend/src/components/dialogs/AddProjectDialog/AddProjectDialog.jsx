@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import ProjectTagComboBox from "../../comboBox/ProjectTagComboBox";
 import "./AddProjectDialog.scss";
 import axios from "../../../client/axios.js";
@@ -11,8 +11,15 @@ const AddProjectDialog = ({ handleFormSubmit }) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const [data, setData] = useState();
+
+  useEffect(() => {
+    //Initialize the "tag" field value in the form data
+    setValue("tag", "Mobile App");
+  }, []);
+
 
   const onSubmit = async (data) => {
     try {
@@ -33,6 +40,8 @@ const AddProjectDialog = ({ handleFormSubmit }) => {
         }
       );
       if (response.status === 201) {
+        console.log("Inside AddProjectDialog.jsx");
+        console.log(data);
         handleFormSubmit();
         setData(data);
         window.location.reload();
@@ -43,6 +52,11 @@ const AddProjectDialog = ({ handleFormSubmit }) => {
     handleFormSubmit();
     setData(data);
     console.log(data);
+  };
+
+  const handleTagChange = (value) => {
+    // Update the "tag" field value in the form data
+    setValue("tag", value);
   };
 
   return (
@@ -138,7 +152,7 @@ const AddProjectDialog = ({ handleFormSubmit }) => {
 
           <div className="row">
             <div className="col-lg-6 col-md-8 col-sm-12">
-              <ProjectTagComboBox />
+              <ProjectTagComboBox onChange={handleTagChange} />
             </div>
           </div>
           <div className="d-flex justify-content-center">
