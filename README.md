@@ -9,6 +9,8 @@ This project uses the following technologies:
 - Sass
 - Reactjs
 - Bootstrap
+- Express
+- PostgreSql
 
 
 ## Note 
@@ -24,19 +26,11 @@ To run this application locally, you'll need to have Node.js and npm (or yarn) i
     git clone https://github.com/ahmedhosam283843/Portify.git
     ```
 
-2. Install the dependencies:
+2. set up FrontEnd -> [FrontEnd_README](https://github.com/ahmedhosam283843/Portify/blob/master/frontend/README.md)
 
-    ```bash
-    npm install
-    ```
+3. set up BackEnd -> [BackEnd_README](https://github.com/ahmedhosam283843/Portify/blob/master/backend/README.md)
 
-3. Start the development server:
 
-    ```bash
-    npm start
-    ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
 
 
