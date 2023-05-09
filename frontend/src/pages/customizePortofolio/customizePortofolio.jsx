@@ -6,7 +6,12 @@ import axios from "../../client/axios.js";
 import endpoints from "../../client/endpoints.js";
 import "./styles.css";
 export default function CustomizePortofolio() {
-  const { register, handleSubmit, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const [data, setData] = useState({
     "skill-1": "python",
     "skill-2": "kotlin",
@@ -61,9 +66,15 @@ export default function CustomizePortofolio() {
       <h1 className="customize-header">
         Customize My <span id="customize-colored">Portofolio</span>
       </h1>
-      {error && (
-        <div className="alert alert-danger mt-4" role="alert">
-          {error}
+      {/* Display error box from errors*/}
+      {Object.keys(errors).length > 0 && (
+        <div className="alert alert-danger">
+          {Object.values(errors).map(
+            (error) =>
+              error.message.length > 0 && ( // only display error message if there is one
+                <p key={error.message}>{"*" + error.message}</p>
+              )
+          )}
         </div>
       )}
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
@@ -86,8 +97,15 @@ export default function CustomizePortofolio() {
                 className="form-control custom-input"
                 type="text"
                 placeholder="User Image URL"
-                {...register("img-url", { required: true })}
+                {...register("img-url", {
+                  required: true,
+                  pattern: {
+                    value: /(https?:\/\/.*\.(?:png))/i,
+                    message: "Please enter a valid URL of a PNG image.",
+                  },
+                })}
               />
+
               <p id="customize-note">
                 Note: Image must be without background and in png format
               </p>
