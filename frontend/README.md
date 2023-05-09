@@ -16,16 +16,16 @@ To run the frontend application locally, you'll need to have Node.js and npm (or
     ```bash
     cd .\frontend\
     ```
-2. Install the dependencies:
+3. Install the dependencies:
 
     ```bash
     npm install
     ```
 
-3. Start the development server:
+4. Start the development server:
 
     ```bash
     npm start
     ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
