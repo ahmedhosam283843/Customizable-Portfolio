@@ -4,9 +4,14 @@ import { useState } from "react";
 import "./ExperienceForm.scss";
 import axios from "../../../../client/axios.js";
 import endpoints from "../../../../client/endpoints.js";
-const ExperienceForm = ({handleFormSubmit}) => {
-  const { register, handleSubmit } = useForm();
+const ExperienceForm = ({ handleFormSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [data, setData] = useState();
+  const currentYear = new Date().getFullYear();
   const onSubmit = async (data) => {
     try {
       const token =
@@ -38,6 +43,17 @@ const ExperienceForm = ({handleFormSubmit}) => {
     <div className="experience-form">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
+          {/* Display error box from errors*/}
+          {Object.keys(errors).length > 0 && (
+            <div className="alert alert-danger">
+              {Object.values(errors).map(
+                (error) =>
+                  error.message.length > 0 && ( // only display error message if there is one
+                    <p key={error.message}>{"*" + error.message}</p>
+                  )
+              )}
+            </div>
+          )}
           <div className="row mb-4">
             <div className="col-lg-12 col-md-12 col-sm-12">
               <input
@@ -67,7 +83,18 @@ const ExperienceForm = ({handleFormSubmit}) => {
                 className="form-control custom-input"
                 type="number"
                 placeholder="Start Year"
-                {...register("start-year", { required: true })}
+                {...register("start-year", {
+                  required: true,
+                  pattern: {
+                    value: /^(19|20)\d{2}$/,
+                    message: `Please enter a valid year in the format YYYY up to ${currentYear}`,
+                  },
+                  validate: {
+                    lessThanOrEqual: (value) =>
+                      parseInt(value) <= currentYear ||
+                      `Please enter a year up to ${currentYear}`,
+                  },
+                })}
               />
             </div>
           </div>
