@@ -6,8 +6,12 @@ import "./AddProjectDialog.scss";
 import axios from "../../../client/axios.js";
 import endpoints from "../../../client/endpoints.js";
 
-const AddProjectDialog = ({handleFormSubmit}) => {
-  const { register, handleSubmit } = useForm();
+const AddProjectDialog = ({ handleFormSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [data, setData] = useState();
 
   const onSubmit = async (data) => {
@@ -45,6 +49,17 @@ const AddProjectDialog = ({handleFormSubmit}) => {
     <div className="project-dialog">
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
+          {/* Display error box from errors*/}
+          {Object.keys(errors).length > 0 && (
+            <div className="alert alert-danger">
+              {Object.values(errors).map(
+                (error) =>
+                  error.message.length > 0 && ( // only display error message if there is one
+                    <p key={error.message}>{"*" + error.message}</p>
+                  )
+              )}
+            </div>
+          )}
           <div className="row mb-4">
             <div className="col-lg-8 col-md-12 col-sm-12">
               <input
@@ -74,7 +89,13 @@ const AddProjectDialog = ({handleFormSubmit}) => {
                 className="form-control custom-input"
                 type="text"
                 placeholder="Project Image URL"
-                {...register("img-url", { required: true })}
+                {...register("img-url", {
+                  required: true,
+                  pattern: {
+                    value: /^(ftp|http|https):\/\/[^ "]+$/,
+                    message: "Please enter a valid image URL",
+                  },
+                })}
               />
             </div>
           </div>
@@ -86,7 +107,13 @@ const AddProjectDialog = ({handleFormSubmit}) => {
                 className="form-control custom-input"
                 type="text"
                 placeholder="Code Link"
-                {...register("code-link", { required: true })}
+                {...register("code-link", {
+                  required: true,
+                  pattern: {
+                    value: /^(ftp|http|https):\/\/[^ "]+$/,
+                    message: "Please enter a valid code URL",
+                  },
+                })}
               />
             </div>
           </div>
@@ -98,7 +125,13 @@ const AddProjectDialog = ({handleFormSubmit}) => {
                 className="form-control custom-input"
                 type="text"
                 placeholder="Demo Link"
-                {...register("demo-link", { required: true })}
+                {...register("demo-link", {
+                  required: true,
+                  pattern: {
+                    value: /^(ftp|http|https):\/\/[^ "]+$/,
+                    message: "Please enter a valid demo URL",
+                  },
+                })}
               />
             </div>
           </div>
@@ -110,7 +143,7 @@ const AddProjectDialog = ({handleFormSubmit}) => {
           </div>
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn customize-btn">
-                Add Project
+              Add Project
             </button>
           </div>
         </div>
