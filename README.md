@@ -2,19 +2,25 @@
 
 Portify is a responsive, customizable portfolio website template that you can use to showcase your work and projects. The template is built with HTML, CSS, and JavaScript.
 
-## Technologies Used
-This project uses the following technologies:
+## Features
 
-- HTML
-- Sass
-- Reactjs
-- Bootstrap
-- Express
-- PostgreSql
+Portify offers the following features:
 
+1. **Responsive Design**: The template is designed to be responsive and compatible with various screen sizes and devices, ensuring a seamless browsing experience for users.
 
-## Note 
-All the data in this phase is fixed dummy data, the customizability functionality will be implemented in the next phases. 
+2. **Content Customization**: Portify allows you to easily customize the content of your portfolio. You can modify the text, images, project descriptions, and other content elements to showcase your work and projects effectively.
+
+3. **Project Showcase**: Portify enables you to showcase your projects and work effectively. You can create dedicated project pages with detailed descriptions, images, links, and other relevant information. This allows visitors to explore your work and gain insights into your skills and expertise.
+
+4. **Technologies Used**: The template incorporates a variety of modern technologies and frameworks to enhance the functionality and aesthetics of your portfolio. Some of the key technologies used include:
+
+   - HTML: The foundation of the template, providing the structure and markup for your portfolio pages.
+   - Sass: A powerful CSS preprocessor that offers additional features and flexibility for styling your portfolio.
+   - React.js: A popular JavaScript library for building user interfaces. React.js enables dynamic and interactive elements on your portfolio pages.
+   - Bootstrap: A front-end framework that provides a wide range of pre-built components and styles, making it easier to create a visually appealing and responsive portfolio.
+   - Express: A minimal and flexible Node.js web application framework used for building the back-end server.
+   - PostgreSQL: A robust and scalable relational database management system utilized for storing and managing data associated with your portfolio.
+
 
 ## Installation
 
